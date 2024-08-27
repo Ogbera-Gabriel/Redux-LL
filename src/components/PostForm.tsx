@@ -42,6 +42,8 @@ const PostForm = () => {
     setUserID('');
   };
 
+  const canSubmit = value.title && value.content && userID;
+
   return (
     <>
       <h3 className="text-2xl font-bold">Create Post</h3>
@@ -60,7 +62,7 @@ const PostForm = () => {
           onChange={handleChange}
           className="h-[150px]"
         />
-        <Button size="lg" type="submit">Submit</Button>
+        <Button size="lg" type="submit" disabled={!canSubmit}>Submit</Button>
       </form>
     </>
   );
