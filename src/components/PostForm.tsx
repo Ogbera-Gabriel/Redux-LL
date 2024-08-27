@@ -5,11 +5,15 @@ import { Textarea } from './ui/textarea';
 import { useAppDispatch } from '@/app/hooks';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { nanoid } from '@reduxjs/toolkit';
 
 
 const PostForm = () => {
   const [value, setValue] = useState({ title: '', content: '' });
   const dispatch = useAppDispatch();
+
+  const userId = nanoid();
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -21,10 +25,11 @@ const PostForm = () => {
     e.preventDefault();
     const { title, content } = value;
     dispatch(
-      addPost({
+      addPost(
         title,
         content,
-      })
+        userId,
+      )
     );
     //dispatch(addTodo(title)); NICE!!!
     toast.success(`Post ${title} added`);

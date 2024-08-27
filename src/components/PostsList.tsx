@@ -6,6 +6,7 @@ import { deletePost } from '@/features/post/postSlice';
 
 const PostsList = () => {
   const posts = useAppSelector((state) => state.post);
+  console.log(posts)
   const dispatch = useAppDispatch();
   const handleDelete = (id: string) => {
     console.log(id)
