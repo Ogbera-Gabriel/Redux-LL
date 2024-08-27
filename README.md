@@ -4,6 +4,8 @@
 
 ## Overview
 
+---
+
 This project demonstrates how to use Redux to manage the state of a React application. The application includes three main features:
 
 1. **Posts Management**: Allows users to add posts with a title, content, and an auto-generated ID.
