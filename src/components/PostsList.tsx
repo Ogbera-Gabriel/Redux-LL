@@ -3,14 +3,20 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import PostForm from './PostForm';
 import { Button } from './ui/button';
 import { deletePost } from '@/features/post/postSlice';
+import { User } from '@/lib/types';
 
 const PostsList = () => {
   const posts = useAppSelector((state) => state.post);
-  console.log(posts)
+  const users = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+
   const handleDelete = (id: string) => {
-    console.log(id)
     dispatch(deletePost({ id }));
+  }
+
+  const getUserName = (userId: string): string => {
+    const user = users.find((user: User) => user.id === userId);
+    return user ? user.name : 'Unknown User';
   }
   
   return (
@@ -26,7 +32,8 @@ const PostsList = () => {
           <CardContent>
             <p>{post.content}</p>
           </CardContent>
-          <CardFooter className="justify-end">
+          <CardFooter className="flex justify-between">
+            <span>by {getUserName(post.userId)}</span>
             <Button variant="destructive" onClick={() => handleDelete(post.id)}>
                 Delete
             </Button>
